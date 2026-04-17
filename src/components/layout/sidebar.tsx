@@ -28,17 +28,27 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden md:flex flex-col h-screen w-64 sticky top-0 bg-ivory border-r border-border-cream py-6 px-4 gap-4">
-      <div className="mb-6 px-2">
-        <h1 className="font-headline text-xl font-medium text-terracotta">
-          CRM Pro
-        </h1>
-        <p className="text-xs text-stone-gray uppercase tracking-[0.2em] mt-1">
-          Sales Intelligence
-        </p>
+    <aside className="hidden md:flex flex-col h-screen w-64 sticky top-0 bg-ivory border-r border-border-cream py-5 px-3 gap-2">
+      {/* Brand */}
+      <div className="flex items-center gap-2.5 px-3 py-3 mb-3">
+        <div className="w-8 h-8 rounded-xl bg-terracotta flex items-center justify-center shrink-0">
+          <span className="material-symbols-outlined !text-[16px] text-ivory filled">hub</span>
+        </div>
+        <div>
+          <h1 className="font-headline text-[17px] font-medium text-near-black leading-none">
+            CRM Pro
+          </h1>
+          <p className="text-[10px] text-stone-gray uppercase tracking-[0.18em] mt-0.5">
+            Sales Intelligence
+          </p>
+        </div>
       </div>
 
-      <nav className="flex flex-col gap-1 flex-grow">
+      {/* Primary nav */}
+      <nav className="flex flex-col gap-0.5 flex-grow">
+        <p className="text-[10px] font-semibold text-warm-silver uppercase tracking-widest px-3 mb-1">
+          Menu
+        </p>
         {NAV.map((item) => {
           const active = item.matches
             ? item.matches(pathname)
@@ -48,41 +58,45 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-4 py-2.5 rounded-full transition-all duration-200 text-[15px]",
+                "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 text-[14px] font-medium",
                 active
-                  ? "bg-warm-sand text-near-black font-medium ring-shadow-deep"
-                  : "text-olive-gray hover:bg-border-cream hover:text-near-black",
+                  ? "bg-terracotta/10 text-terracotta"
+                  : "text-olive-gray hover:bg-warm-sand hover:text-near-black",
               )}
             >
               <span
                 className={cn(
-                  "material-symbols-outlined text-lg",
-                  active && "filled",
+                  "material-symbols-outlined !text-[20px] transition-all",
+                  active ? "filled" : "",
                 )}
               >
                 {item.icon}
               </span>
               <span>{item.label}</span>
+              {active && (
+                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-terracotta" />
+              )}
             </Link>
           );
         })}
       </nav>
 
-      <div className="mt-auto flex flex-col gap-1 pt-6 border-t border-border-cream">
+      {/* Footer nav */}
+      <div className="flex flex-col gap-0.5 pt-4 border-t border-border-cream">
         <Link
           href="/help"
-          className="flex items-center gap-3 px-4 py-2 text-olive-gray hover:text-near-black transition-colors text-sm"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-olive-gray hover:bg-warm-sand hover:text-near-black transition-colors text-[14px] font-medium"
         >
-          <span className="material-symbols-outlined text-lg">help_outline</span>
+          <span className="material-symbols-outlined !text-[20px]">help_outline</span>
           <span>Help</span>
         </Link>
         <form action={signOutAction}>
           <button
             type="submit"
-            className="w-full flex items-center gap-3 px-4 py-2 text-olive-gray hover:text-near-black transition-colors text-sm"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-olive-gray hover:bg-rose-50 hover:text-rose-600 transition-colors text-[14px] font-medium"
           >
-            <span className="material-symbols-outlined text-lg">logout</span>
-            <span>Logout</span>
+            <span className="material-symbols-outlined !text-[20px]">logout</span>
+            <span>Đăng xuất</span>
           </button>
         </form>
       </div>

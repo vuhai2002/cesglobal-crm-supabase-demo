@@ -15,7 +15,8 @@ body {
 }
 
 .font-headline {
-  font-family: "Newsreader", Georgia, serif;
+  /* Lora fallback: same editorial serif aesthetic, full Vietnamese support */
+  font-family: "Newsreader", "Lora", Georgia, serif;
 }
 
 .material-symbols-outlined {

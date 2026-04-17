@@ -48,7 +48,7 @@ export default async function DashboardPage() {
 
       <section className="p-6 md:p-8 max-w-7xl mx-auto w-full space-y-10 pb-24">
         <header>
-          <h1 className="font-headline text-3xl md:text-4xl font-medium text-near-black leading-tight mb-2">
+          <h1 className="text-3xl md:text-4xl font-semibold text-near-black leading-tight mb-2 tracking-tight">
             Xin chào, {firstName}.
           </h1>
           <p className="text-olive-gray max-w-2xl leading-relaxed">
@@ -98,21 +98,22 @@ export default async function DashboardPage() {
           />
         </div>
 
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <h2 className="font-headline text-2xl font-medium text-near-black">
+        <div className="space-y-5">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 min-w-0">
+              <h2 className="text-xl font-semibold text-near-black whitespace-nowrap tracking-tight">
                 Leads mới nhất
               </h2>
-              <span className="px-2.5 py-0.5 bg-warm-sand text-charcoal-warm text-[13px] font-medium rounded-full">
+              <span className="shrink-0 px-2.5 py-0.5 bg-warm-sand text-charcoal-warm text-[12px] font-semibold rounded-full tabular-nums">
                 {(recentLeads ?? []).length.toString().padStart(2, "0")}
               </span>
             </div>
             <Link
               href="/leads"
-              className="text-[14px] font-medium text-terracotta hover:underline"
+              className="shrink-0 text-[13px] font-semibold text-terracotta hover:opacity-75 transition-opacity flex items-center gap-1"
             >
               Xem tất cả
+              <span className="material-symbols-outlined !text-[15px]">arrow_forward</span>
             </Link>
           </div>
           <RecentLeadsTable leads={recentLeads ?? []} />

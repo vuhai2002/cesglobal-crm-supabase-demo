@@ -4,6 +4,23 @@ import { LEAD_SOURCE_LABELS } from "@/lib/constants";
 import { LeadStatusBadge } from "@/components/leads/lead-status-badge";
 import { getInitials, formatDateVn } from "@/lib/utils";
 
+const AVATAR_COLORS = [
+  "bg-sky-100 text-sky-700",
+  "bg-violet-100 text-violet-700",
+  "bg-emerald-100 text-emerald-700",
+  "bg-amber-100 text-amber-700",
+  "bg-rose-100 text-rose-700",
+  "bg-teal-100 text-teal-700",
+  "bg-orange-100 text-orange-700",
+  "bg-indigo-100 text-indigo-700",
+];
+
+function avatarColor(name: string) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) | 0;
+  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
+}
+
 export function LeadTable({ leads }: { leads: Lead[] }) {
   if (leads.length === 0) {
     return (
@@ -34,26 +51,26 @@ export function LeadTable({ leads }: { leads: Lead[] }) {
     <div className="overflow-x-auto">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="bg-ivory border-b border-border-cream">
-            <th className="px-6 py-4 font-headline text-lg font-medium text-near-black">
+          <tr className="bg-[#f7f6f0] border-b border-border-cream">
+            <th className="px-6 py-3.5 text-[11px] font-semibold text-stone-gray uppercase tracking-widest">
               Tên khách hàng
             </th>
-            <th className="px-6 py-4 text-xs font-semibold text-stone-gray uppercase tracking-wider">
+            <th className="px-6 py-3.5 text-[11px] font-semibold text-stone-gray uppercase tracking-widest">
               Số điện thoại
             </th>
-            <th className="px-6 py-4 text-xs font-semibold text-stone-gray uppercase tracking-wider">
+            <th className="px-6 py-4 text-[11px] font-semibold text-stone-gray uppercase tracking-widest">
               Email
             </th>
-            <th className="px-6 py-4 text-xs font-semibold text-stone-gray uppercase tracking-wider">
+            <th className="px-6 py-4 text-[11px] font-semibold text-stone-gray uppercase tracking-widest">
               Trạng thái
             </th>
-            <th className="px-6 py-4 text-xs font-semibold text-stone-gray uppercase tracking-wider">
+            <th className="px-6 py-4 text-[11px] font-semibold text-stone-gray uppercase tracking-widest">
               Nguồn
             </th>
-            <th className="px-6 py-4 text-xs font-semibold text-stone-gray uppercase tracking-wider">
+            <th className="px-6 py-4 text-[11px] font-semibold text-stone-gray uppercase tracking-widest">
               Ngày tạo
             </th>
-            <th className="px-6 py-4 text-xs font-semibold text-stone-gray uppercase tracking-wider text-right">
+            <th className="px-6 py-4 text-[11px] font-semibold text-stone-gray uppercase tracking-widest text-right">
               Hành động
             </th>
           </tr>
@@ -62,11 +79,11 @@ export function LeadTable({ leads }: { leads: Lead[] }) {
           {leads.map((lead) => (
             <tr
               key={lead.id}
-              className="hover:bg-ivory transition-colors group"
+              className="hover:bg-warm-sand/40 transition-colors duration-150 group"
             >
-              <td className="px-6 py-5">
+              <td className="px-6 py-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-parchment flex items-center justify-center font-headline text-terracotta font-medium border border-border-warm">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-xs shrink-0 ${avatarColor(lead.full_name)}`}>
                     {getInitials(lead.full_name)}
                   </div>
                   <div>
@@ -82,19 +99,19 @@ export function LeadTable({ leads }: { leads: Lead[] }) {
                   </div>
                 </div>
               </td>
-              <td className="px-6 py-5 text-sm text-olive-gray">
+              <td className="px-6 py-4 text-[14px] text-olive-gray">
                 {lead.phone}
               </td>
-              <td className="px-6 py-5 text-sm text-olive-gray">
+              <td className="px-6 py-4 text-[14px] text-olive-gray">
                 {lead.email ?? "—"}
               </td>
-              <td className="px-6 py-5">
+              <td className="px-6 py-4">
                 <LeadStatusBadge status={lead.status} />
               </td>
-              <td className="px-6 py-5 text-sm text-olive-gray">
+              <td className="px-6 py-4 text-[14px] text-olive-gray">
                 {LEAD_SOURCE_LABELS[lead.source]}
               </td>
-              <td className="px-6 py-5 text-sm text-olive-gray">
+              <td className="px-6 py-4 text-[14px] text-olive-gray">
                 {formatDateVn(lead.created_at)}
               </td>
               <td className="px-6 py-5 text-right">

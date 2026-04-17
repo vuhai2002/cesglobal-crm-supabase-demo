@@ -25,7 +25,7 @@ const config: Config = {
         "error-crimson": "#b53333",
       },
       fontFamily: {
-        headline: ["Newsreader", "Georgia", "serif"],
+        headline: ["Newsreader", "Lora", "Georgia", "serif"],
         body: ["Inter", "system-ui", "sans-serif"],
       },
       borderRadius: {
